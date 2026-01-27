@@ -1,0 +1,157 @@
+/* Colores personalizados */
+.custom-footer {
+    background-color: #1a1a1a; /* El gris oscuro de la imagen */
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.footer-links li {
+    color: #cccccc;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #3b82f6; /* Azul al pasar el mouse */
+}
+
+/* Estilo para el logo e. */
+.logo-text {
+    font-size: 5rem;
+    font-weight: 800;
+    color: #3b82f6; /* Azul de la imagen */
+    line-height: 1;
+}
+
+.logo-text .dot {
+    color: #3b82f6;
+}
+
+/* Botón flotante azul */
+.btn-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #1d4ed8;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+    z-index: 1000;
+}
+/* El botón con tu azul específico */
+.btn-zeta-blue {
+    background-color: #006bb1 !important;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 12px 30px;
+    border-radius: 4px;
+    /* Un toque más cuadrado para que sea elegante */
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-zeta-blue:hover {
+    background-color: #00568d !important;
+    /* Un tono más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 107, 177, 0.3);
+}
+
+/* Estilo para el badge que queda debajo */
+.badge-bonificado {
+    background-color: rgba(0, 107, 177, 0.1);
+    /* Un celeste muy suave de fondo */
+    color: #006bb1;
+    border: 1px solid #006bb1;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+.btn-float:hover {
+    color: white;
+    transform: scale(1.05);
+    background-color: #1e40af;
+}
+
+/* Ajuste de borde superior del copyright */
+.border-secondary {
+    border-color: #333333 !important;
+}
+
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+
+    /* Degradado azul + Tu imagen local */
+    /* background-image: linear-gradient(rgba(1, 49, 76, 0.7), rgba(1, 49, 76, 0.7)),
+        url('img/edificio-fondo.jpg'); */
+
+    /* Configuración de Parallax */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    /* Aseguramos que el texto sea blanco sobre el fondo oscuro */
+    /* color: white; */
+}
+
+
+
+/* Sección de funcionalidades con el azul específico */
+.bg-funcionalidades {
+    background-color: #006bb1 !important;
+    color: #ffffff !important;
+    padding: 100px 0;
+}
+
+/* Títulos en blanco */
+.bg-funcionalidades h2,
+.bg-funcionalidades h3,
+.bg-funcionalidades h6 {
+    color: #ffffff !important;
+}
+
+/* Párrafos con un toque de transparencia para estilo editorial */
+.bg-funcionalidades p {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Adaptación de la raya Castell para fondo oscuro */
+.castell-dash-white {
+    width: 30px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.5);
+    /* Blanco traslúcido */
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+body {
+    font-family: 'CorbelCustom', Corbel, 'Segoe UI', Tahoma, sans-serif !important;
+}
+
+/* Opcional: Si quieres que los títulos también la usen específicamente */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6, a, div {
+    font-family: 'CorbelCustom', sans-serif;
+}
