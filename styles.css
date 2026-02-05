@@ -1,157 +1,432 @@
-/* Colores personalizados */
-.custom-footer {
-    background-color: #1a1a1a; /* El gris oscuro de la imagen */
-    font-family: 'Segoe UI', Roboto, sans-serif;
+/* =========================================
+   1. CONFIGURACIÓN GLOBAL Y VARIABLES
+   ========================================= */
+:root {
+    /* Paleta de Colores ZetaCe */
+    --zc-blue-dark: #020d1c;
+    /* Fondo Hero */
+    --zc-blue-main: #0060a9;
+    /* Azul Institucional (Logo/Botones) */
+    --zc-blue-hover: #004b85;
+    /* Azul Hover */
+    --zc-blue-light: #3b9cd2;
+    /* Celestes de links */
+    --zc-cyan: #6caddf;
+    /* Texto Cyan */
+    --zc-gray-bg: #eef1f3;
+    /* Fondo Gris Claro */
+    --zc-text-dark: #0b1e33;
+    /* Texto Oscuro */
+    --zc-text-gray: #555555;
+    /* Texto Gris */
 }
 
-.footer-links li {
-    color: #cccccc;
-    font-size: 0.9rem;
-    margin-bottom: 8px;
+/* IMPORTACIÓN DE FUENTE LOCAL */
+@font-face {
+    font-family: 'Corbel';
+    /* IMPORTANTE: Si tu CSS está dentro de una carpeta (ej: css/styles.css),
+       la ruta debe ser '../fonts/corbel.ttf'. Si está junto al HTML, usa './fonts/corbel.ttf' */
+    src: url('./fonts/corbel.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-.footer-links a {
-    color: #cccccc;
-    text-decoration: none;
-    transition: color 0.3s;
+@font-face {
+    font-family: 'Corbel';
+    src: url('./fonts/corbelb.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
 
-.footer-links a:hover {
-    color: #3b82f6; /* Azul al pasar el mouse */
-}
-
-/* Estilo para el logo e. */
-.logo-text {
-    font-size: 5rem;
-    font-weight: 800;
-    color: #3b82f6; /* Azul de la imagen */
-    line-height: 1;
-}
-
-.logo-text .dot {
-    color: #3b82f6;
-}
-
-/* Botón flotante azul */
-.btn-float {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: #1d4ed8;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    transition: transform 0.2s;
-    z-index: 1000;
-}
-/* El botón con tu azul específico */
-.btn-zeta-blue {
-    background-color: #006bb1 !important;
-    color: #ffffff !important;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 2px;
-    padding: 12px 30px;
-    border-radius: 4px;
-    /* Un toque más cuadrado para que sea elegante */
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.btn-zeta-blue:hover {
-    background-color: #00568d !important;
-    /* Un tono más oscuro al pasar el mouse */
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 107, 177, 0.3);
-}
-
-/* Estilo para el badge que queda debajo */
-.badge-bonificado {
-    background-color: rgba(0, 107, 177, 0.1);
-    /* Un celeste muy suave de fondo */
-    color: #006bb1;
-    border: 1px solid #006bb1;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 700;
-}
-.btn-float:hover {
-    color: white;
-    transform: scale(1.05);
-    background-color: #1e40af;
-}
-
-/* Ajuste de borde superior del copyright */
-.border-secondary {
-    border-color: #333333 !important;
-}
-
-.hero-section {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-
-    /* Degradado azul + Tu imagen local */
-    /* background-image: linear-gradient(rgba(1, 49, 76, 0.7), rgba(1, 49, 76, 0.7)),
-        url('img/edificio-fondo.jpg'); */
-
-    /* Configuración de Parallax */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    /* Aseguramos que el texto sea blanco sobre el fondo oscuro */
-    /* color: white; */
-}
-
-
-
-/* Sección de funcionalidades con el azul específico */
-.bg-funcionalidades {
-    background-color: #006bb1 !important;
-    color: #ffffff !important;
-    padding: 100px 0;
-}
-
-/* Títulos en blanco */
-.bg-funcionalidades h2,
-.bg-funcionalidades h3,
-.bg-funcionalidades h6 {
-    color: #ffffff !important;
-}
-
-/* Párrafos con un toque de transparencia para estilo editorial */
-.bg-funcionalidades p {
-    color: rgba(255, 255, 255, 0.85) !important;
-}
-
-/* Adaptación de la raya Castell para fondo oscuro */
-.castell-dash-white {
-    width: 30px;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.5);
-    /* Blanco traslúcido */
-    margin-right: 20px;
-    flex-shrink: 0;
-}
-
+/* RESETEO GENERAL */
 body {
-    font-family: 'CorbelCustom', Corbel, 'Segoe UI', Tahoma, sans-serif !important;
+    /* Al ponerlo aquí y quitar los otros, TODO heredará Corbel */
+    font-family: 'Corbel', sans-serif !important;
+    color: var(--zc-text-gray);
+    overflow-x: hidden;
 }
 
-/* Opcional: Si quieres que los títulos también la usen específicamente */
+/* Forzamos títulos y componentes clave */
 h1,
 h2,
 h3,
 h4,
 h5,
-h6, a, div {
-    font-family: 'CorbelCustom', sans-serif;
+h6,
+.navbar-brand,
+.hero-title,
+.general-title,
+.custom-navbar,
+.benefits-section {
+    font-family: 'Corbel', sans-serif !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* =========================================
+   2. NAVBAR (Barra de Navegación)
+   ========================================= */
+.custom-navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.brand-box {
+    /* background-color: var(--zc-blue-main); <--- Descomentar si vuelve a ser texto */
+    color: #ffffff !important;
+    padding: 5px 25px;
+    margin-left: 3rem;
+    display: inline-block;
+}
+
+.custom-link {
+    color: var(--zc-blue-light) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-right: 1.5rem;
+    padding-top: 15px;
+    transition: color 0.3s ease;
+}
+
+.custom-link:hover {
+    color: var(--zc-blue-main) !important;
+}
+
+.btn-contacto {
+    background-color: var(--zc-blue-main);
+    color: #ffffff;
+    border: none;
+    border-radius: 0;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.btn-contacto:hover {
+    background-color: var(--zc-blue-hover);
+    color: #ffffff;
+}
+
+.btn-contacto i {
+    font-weight: bold;
+}
+
+/* =========================================
+   3. HERO SECTION (Portada)
+   ========================================= */
+.hero-section {
+    background-color: var(--zc-blue-dark);
+    min-height: 85vh;
+    color: #ffffff;
+    padding: 40px 0;
+    position: relative;
+}
+
+.hero-title {
+    font-weight: 300;
+    letter-spacing: -0.5px;
+}
+
+.hero-card {
+    width: 260px;
+    height: 260px;
+    /* Aspect ratio removido aquí para evitar conflictos en móviles */
+}
+
+/* Caja Oscura */
+.card-dark {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-cyan {
+    color: var(--zc-cyan);
+    font-weight: 400;
+}
+
+/* Caja Blanca */
+.card-white {
+    background-color: #ffffff;
+    color: var(--zc-text-gray);
+    border: none;
+}
+
+.card-white .card-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.contact-link {
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.contact-link:hover {
+    color: var(--zc-blue-main);
+}
+
+.contact-link i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .hero-card {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        margin-bottom: 15px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .brand-box {
+        margin-left: 0;
+        padding: 5px 10px;
+    }
+
+    /* Ajuste responsive del logo */
+}
+
+/* =========================================
+   4. SECCIÓN BENEFICIOS
+   ========================================= */
+.benefits-section {
+    background-color: #ffffff;
+    padding: 60px 0;
+    color: var(--zc-text-gray);
+}
+
+.benefits-title {
+    color: var(--zc-blue-main);
+    font-weight: 400;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.benefits-divider {
+    border: none;
+    border-top: 1px solid var(--zc-blue-main);
+    opacity: 1;
+    margin-bottom: 40px;
+}
+
+.custom-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.custom-list li::before {
+    content: "■";
+    color: var(--zc-blue-main);
+    font-size: 0.8rem;
+    position: absolute;
+    left: 0;
+    top: 3px;
+}
+
+/* =========================================
+   5. SECCIÓN QUÉ ES (Info)
+   ========================================= */
+.info-section {
+    background: radial-gradient(circle at 30% 50%, #004e8a 0%, #00284a 100%);
+    background-color: #00284a;
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.info-title {
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+.info-text {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 90%;
+}
+
+.software-img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+/* =========================================
+   6. SECCIÓN FEATURES (Tabs)
+   ========================================= */
+.features-section {
+    background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    min-height: 600px;
+    padding: 60px 0;
+    position: relative;
+}
+
+.features-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.features-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Estilo Base Tarjeta */
+.feature-card {
+    border-radius: 0;
+    transition: all 0.3s ease;
+    /* Quitamos aspect-ratio de aquí para que la Grande pueda crecer si tiene mucho texto */
+}
+
+/* Tarjeta Activa (Grande) */
+.feature-card.active {
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-top: 4px solid transparent;
+}
+
+.feature-title {
+    color: var(--zc-blue-light);
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+.feature-desc {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.feature-list li {
+    font-size: 0.85rem;
+    color: #444;
+    margin-bottom: 8px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.feature-list li::before {
+    content: "•";
+    color: #444;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* Tarjetas Inactivas (Vidrio) - ESTAS SÍ SON CUADRADAS */
+.feature-card.glass {
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #333;
+    cursor: pointer;
+    min-height: 150px;
+
+    /* OPTIMIZACIÓN: Solo las tarjetas pequeñas son forzadas a ser cuadradas */
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /* Asegura que llenen la columna */
+}
+
+.feature-card.glass h5 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #444;
+}
+
+.feature-card.glass:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* =========================================
+   7. SECCIÓN CARACTERÍSTICAS GENERALES
+   ========================================= */
+.general-features {
+    background-color: var(--zc-gray-bg);
+    color: var(--zc-text-dark);
+    padding: 80px 0;
+}
+
+.general-title {
+    font-weight: 400;
+    font-size: 2.5rem;
+    color: var(--zc-text-dark);
+}
+
+.z-box {
+    border: 1px solid var(--zc-text-dark);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--zc-text-dark);
+}
+
+.vertical-divider {
+    width: 1px;
+    height: 250px;
+    background-color: #adb5bd;
+    position: relative;
+}
+
+.vertical-divider::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -3px;
+    width: 7px;
+    height: 7px;
+    background-color: #adb5bd;
+    border-radius: 50%;
+}
+
+.features-list-clean li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 20px;
+    font-weight: 300;
+}
+
+.features-list-clean li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    background-color: #000;
+}
+
+.building-icon {
+    max-height: 300px;
+    opacity: 0.8;
 }
