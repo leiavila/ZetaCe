@@ -21,6 +21,27 @@
     /* Texto Gris */
 }
 
+
+/* --- EFECTO PARALLAX (FONDO FIJO) --- */
+.bg-fixed {
+    /* Esta es la línea mágica: */
+    background-attachment: fixed;
+
+    /* Aseguramos que la imagen cubra todo y esté centrada */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    /* Importante: darle altura para que se vea la imagen */
+    min-height: 60vh;
+    /* Ocupa el 60% del alto de la pantalla (ajustable) */
+
+    /* Flexbox para centrar cualquier texto que pongas encima (opcional) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* IMPORTACIÓN DE FUENTE LOCAL */
 @font-face {
     font-family: 'Corbel';
@@ -276,11 +297,15 @@ a {
    ========================================= */
 .features-section {
     background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop');
-    background-size: cover;
+   
     background-position: center;
     min-height: 600px;
     padding: 60px 0;
     position: relative;
+ 
+    
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .features-section::before {
@@ -429,4 +454,101 @@ a {
 .building-icon {
     max-height: 300px;
     opacity: 0.8;
+}
+/* ANIMACIÓN TARJETAS */
+.card-hover-effect {
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+/* El contenido oculto arranca invisible y sin altura */
+.card-hover-effect .hidden-content {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+/* AL PASAR EL MOUSE (HOVER) */
+.card-hover-effect:hover {
+    background-color: #ffffff !important;
+    /* Fondo Blanco */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    /* Sombra */
+    transform: translateY(-5px);
+    /* Se levanta un poquito */
+    border-color: transparent;
+}
+
+.card-hover-effect:hover .transition-title {
+    color: var(--zc-blue-light);
+    /* Título se pone celeste/azul */
+}
+
+/* Aparece el texto */
+.card-hover-effect:hover .hidden-content {
+    max-height: 150px;
+    /* Se expande hacia abajo */
+    opacity: 1;
+    margin-top: 10px;
+}
+
+/* --- TARJETA INTERACTIVA HERO --- */
+
+.hero-interactive-card {
+    position: relative;
+    /* Necesario para que las caras se ubiquen bien adentro */
+    overflow: hidden;
+    /* Para que nada se salga de los bordes */
+    cursor: pointer;
+}
+
+/* Estilo común para ambas caras */
+.hero-interactive-card .face {
+    position: absolute;
+    /* Las sacamos del flujo para poner una sobre otra */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s ease-in-out;
+    /* Velocidad de la animación */
+}
+
+/* 1. CONFIGURACIÓN CARA FRONTAL (OSCURA) */
+.hero-interactive-card .face-front {
+    opacity: 1;
+    /* Visible por defecto */
+    transform: scale(1);
+    z-index: 2;
+    /* Está arriba */
+}
+
+/* 2. CONFIGURACIÓN CARA TRASERA (BLANCA) */
+.hero-interactive-card .face-back {
+    opacity: 0;
+    /* Invisible por defecto */
+    transform: translateY(20px);
+    /* Un poquito bajada para que suba al aparecer */
+    z-index: 3;
+    /* Se pondrá arriba al activarse */
+    pointer-events: none;
+    /* Para no clickearla por error cuando está invisible */
+}
+
+/* --- ESTADO HOVER (CUANDO EL MOUSE ENTRA) --- */
+
+/* La cara oscura se desvanece y se achica un pelín */
+.hero-interactive-card:hover .face-front {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+/* La cara blanca aparece y sube a su lugar */
+.hero-interactive-card:hover .face-back {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+    /* Ahora sí recibe clicks */
 }
