@@ -1,52 +1,19 @@
 /* =========================================
-   1. CONFIGURACIÓN GLOBAL Y VARIABLES
+   1. CONFIGURACIÓN GLOBAL, FUENTES Y VARIABLES
    ========================================= */
 :root {
-    /* Paleta de Colores ZetaCe */
     --zc-blue-dark: #020d1c;
-    /* Fondo Hero */
     --zc-blue-main: #0060a9;
-    /* Azul Institucional (Logo/Botones) */
     --zc-blue-hover: #004b85;
-    /* Azul Hover */
     --zc-blue-light: #3b9cd2;
-    /* Celestes de links */
     --zc-cyan: #6caddf;
-    /* Texto Cyan */
     --zc-gray-bg: #eef1f3;
-    /* Fondo Gris Claro */
     --zc-text-dark: #0b1e33;
-    /* Texto Oscuro */
     --zc-text-gray: #555555;
-    /* Texto Gris */
 }
 
-
-/* --- EFECTO PARALLAX (FONDO FIJO) --- */
-.bg-fixed {
-    /* Esta es la línea mágica: */
-    background-attachment: fixed;
-
-    /* Aseguramos que la imagen cubra todo y esté centrada */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    /* Importante: darle altura para que se vea la imagen */
-    min-height: 60vh;
-    /* Ocupa el 60% del alto de la pantalla (ajustable) */
-
-    /* Flexbox para centrar cualquier texto que pongas encima (opcional) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* IMPORTACIÓN DE FUENTE LOCAL */
 @font-face {
     font-family: 'Corbel';
-    /* IMPORTANTE: Si tu CSS está dentro de una carpeta (ej: css/styles.css),
-       la ruta debe ser '../fonts/corbel.ttf'. Si está junto al HTML, usa './fonts/corbel.ttf' */
     src: url('./fonts/corbel.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -59,15 +26,21 @@
     font-style: normal;
 }
 
-/* RESETEO GENERAL */
+@font-face {
+    font-family: 'Corbel';
+    src: url('./fonts/corbel-light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
 body {
-    /* Al ponerlo aquí y quitar los otros, TODO heredará Corbel */
+    margin: 0;
     font-family: 'Corbel', sans-serif !important;
     color: var(--zc-text-gray);
     overflow-x: hidden;
+    background-color: #e9ecef;
 }
 
-/* Forzamos títulos y componentes clave */
 h1,
 h2,
 h3,
@@ -86,8 +59,24 @@ a {
     text-decoration: none;
 }
 
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.bg-fixed {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* =========================================
-   2. NAVBAR (Barra de Navegación)
+   2. NAVBAR (BARRA DE NAVEGACIÓN)
    ========================================= */
 .custom-navbar {
     background-color: #ffffff !important;
@@ -95,7 +84,6 @@ a {
 }
 
 .brand-box {
-    /* background-color: var(--zc-blue-main); <--- Descomentar si vuelve a ser texto */
     color: #ffffff !important;
     padding: 5px 25px;
     margin-left: 3rem;
@@ -137,14 +125,30 @@ a {
 }
 
 /* =========================================
-   3. HERO SECTION (Portada)
+   3. HERO SECTION (PORTADA)
    ========================================= */
 .hero-section {
     background-color: var(--zc-blue-dark);
-    min-height: 85vh;
+    background-image: url('img/foto_1_300.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 80vh;
     color: #ffffff;
     padding: 40px 0;
     position: relative;
+    z-index: 1;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .hero-title {
@@ -155,22 +159,53 @@ a {
 .hero-card {
     width: 260px;
     height: 260px;
-    /* Aspect ratio removido aquí para evitar conflictos en móviles */
 }
 
-/* Caja Oscura */
+.hero-interactive-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.hero-interactive-card .face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s ease-in-out;
+}
+
+.hero-interactive-card .face-front {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
+}
+
+.hero-interactive-card .face-back {
+    opacity: 0;
+    transform: translateY(20px);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.hero-interactive-card:hover .face-front {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.hero-interactive-card:hover .face-back {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
 .card-dark {
     background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.text-cyan {
-    color: var(--zc-cyan);
-    font-weight: 400;
-}
-
-/* Caja Blanca */
 .card-white {
     background-color: #ffffff;
     color: var(--zc-text-gray);
@@ -180,6 +215,11 @@ a {
 .card-white .card-text {
     font-size: 0.95rem;
     line-height: 1.5;
+    font-weight: 400;
+}
+
+.text-cyan {
+    color: var(--zc-cyan);
     font-weight: 400;
 }
 
@@ -215,8 +255,6 @@ a {
         margin-left: 0;
         padding: 5px 10px;
     }
-
-    /* Ajuste responsive del logo */
 }
 
 /* =========================================
@@ -260,15 +298,21 @@ a {
 }
 
 /* =========================================
-   5. SECCIÓN QUÉ ES (Info)
+   5. SECCIÓN QUÉ ES (INFO)
    ========================================= */
 .info-section {
     background: radial-gradient(circle at 30% 50%, #004e8a 0%, #00284a 100%);
-    background-color: #00284a;
+    background-image: url('img/seccion_3_300.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #ffffff;
-    padding: 100px 0;
+    padding-top: 100px;
+    padding-bottom: 0 !important;
+    padding: 80px 0;
+    width: 100%;
+    position: relative;
     overflow: hidden;
 }
 
@@ -287,23 +331,19 @@ a {
 }
 
 .software-img {
-    max-width: 100%;
+    width: 400px;
     height: auto;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
 }
 
 /* =========================================
-   6. SECCIÓN FEATURES (Tabs)
+   6. SECCIÓN FEATURES (CARDS/TABS)
    ========================================= */
 .features-section {
-    background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop');
-   
+    background-image: url('img/SECCION_4_LIQ_Y_COBR_300.png');
     background-position: center;
     min-height: 600px;
     padding: 60px 0;
     position: relative;
- 
-    
     background-attachment: fixed;
     background-size: cover;
 }
@@ -320,14 +360,11 @@ a {
     z-index: 2;
 }
 
-/* Estilo Base Tarjeta */
 .feature-card {
     border-radius: 0;
     transition: all 0.3s ease;
-    /* Quitamos aspect-ratio de aquí para que la Grande pueda crecer si tiene mucho texto */
 }
 
-/* Tarjeta Activa (Grande) */
 .feature-card.active {
     background-color: #ffffff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -362,19 +399,15 @@ a {
     left: 0;
 }
 
-/* Tarjetas Inactivas (Vidrio) - ESTAS SÍ SON CUADRADAS */
 .feature-card.glass {
     background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #333;
     cursor: pointer;
-    min-height: 150px;
-
-    /* OPTIMIZACIÓN: Solo las tarjetas pequeñas son forzadas a ser cuadradas */
+    min-height: 100px;
     aspect-ratio: 1 / 1;
     width: 100%;
-    /* Asegura que llenen la columna */
 }
 
 .feature-card.glass h5 {
@@ -387,6 +420,36 @@ a {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+.card-hover-effect {
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+.card-hover-effect .hidden-content {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+.card-hover-effect:hover {
+    background-color: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    border-color: transparent;
+}
+
+.card-hover-effect:hover .transition-title {
+    color: var(--zc-blue-light);
+}
+
+.card-hover-effect:hover .hidden-content {
+    max-height: 150px;
+    opacity: 1;
+    margin-top: 10px;
+}
+
 /* =========================================
    7. SECCIÓN CARACTERÍSTICAS GENERALES
    ========================================= */
@@ -394,6 +457,8 @@ a {
     background-color: var(--zc-gray-bg);
     color: var(--zc-text-dark);
     padding: 80px 0;
+    position: relative;
+    overflow: hidden;
 }
 
 .general-title {
@@ -415,16 +480,20 @@ a {
 }
 
 .vertical-divider {
+    position: absolute;
+    top: 0;
+    left: 50%;
     width: 1px;
-    height: 250px;
+    height: 5000px;
     background-color: #adb5bd;
-    position: relative;
+    transform: translateX(-50%);
+    z-index: 0;
 }
 
 .vertical-divider::before {
     content: "";
     position: absolute;
-    top: -5px;
+    top: 0;
     left: -3px;
     width: 7px;
     height: 7px;
@@ -455,100 +524,242 @@ a {
     max-height: 300px;
     opacity: 0.8;
 }
-/* ANIMACIÓN TARJETAS */
-.card-hover-effect {
-    overflow: hidden;
-    transition: all 0.4s ease-in-out;
-    cursor: pointer;
-}
 
-/* El contenido oculto arranca invisible y sin altura */
-.card-hover-effect .hidden-content {
-    max-height: 0;
-    opacity: 0;
-    margin-top: 0;
-    transition: all 0.4s ease-in-out;
-}
-
-/* AL PASAR EL MOUSE (HOVER) */
-.card-hover-effect:hover {
-    background-color: #ffffff !important;
-    /* Fondo Blanco */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    /* Sombra */
-    transform: translateY(-5px);
-    /* Se levanta un poquito */
-    border-color: transparent;
-}
-
-.card-hover-effect:hover .transition-title {
-    color: var(--zc-blue-light);
-    /* Título se pone celeste/azul */
-}
-
-/* Aparece el texto */
-.card-hover-effect:hover .hidden-content {
-    max-height: 150px;
-    /* Se expande hacia abajo */
-    opacity: 1;
-    margin-top: 10px;
-}
-
-/* --- TARJETA INTERACTIVA HERO --- */
-
-.hero-interactive-card {
+/* =========================================
+   8. SECCIÓN CONDICIONES COMERCIALES
+   ========================================= */
+.condiciones-comerciales {
     position: relative;
-    /* Necesario para que las caras se ubiquen bien adentro */
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
     overflow: hidden;
-    /* Para que nada se salga de los bordes */
-    cursor: pointer;
+    color: white;
+    padding: 60px 0;
 }
 
-/* Estilo común para ambas caras */
-.hero-interactive-card .face {
+.video-fondo {
     position: absolute;
-    /* Las sacamos del flujo para poner una sobre otra */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    transition: all 0.4s ease-in-out;
-    /* Velocidad de la animación */
+    object-fit: cover;
+    z-index: -1;
 }
 
-/* 1. CONFIGURACIÓN CARA FRONTAL (OSCURA) */
-.hero-interactive-card .face-front {
-    opacity: 1;
-    /* Visible por defecto */
-    transform: scale(1);
+.contenido-overlay {
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.container-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.texto-comercial {
+    flex: 1;
+}
+
+.texto-comercial h1 {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.lista-condiciones {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+}
+
+.lista-condiciones li {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.lista-condiciones li::before {
+    content: "◇";
+    position: absolute;
+    left: 0;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.btn-demo {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #001d3d;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background 0.3s;
+}
+
+.btn-demo:hover {
+    background-color: #d1d4d7;
+}
+
+.imagenes-comercial {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.foto-comercial {
+    width: 220px;
+    height: 350px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 992px) {
+    .container-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .imagenes-comercial {
+        justify-content: center;
+    }
+
+    .lista-condiciones li {
+        padding-left: 0;
+    }
+
+    .lista-condiciones li::before {
+        display: none;
+    }
+}
+
+/* =========================================
+   9. SECCIÓN SOPORTE Y ACOMPAÑAMIENTO
+   ========================================= */
+.support-section {
+    position: relative;
+    background-image: url('img/SECCION_6.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 100px 0;
+    min-height: 100vh;
+    color: white;
+}
+
+.support-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.title-box {
+    background-color: #005c99;
+    padding: 15px 30px;
+    display: inline-block;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.title-box h2 {
+    font-weight: 400;
+    font-size: 2.5rem;
+    color: white;
+    margin: 0;
+}
+
+.support-content p {
+    font-size: 24px;
+    font-weight: 300;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .title-box h2 {
+        font-size: 1.8rem;
+    }
+
+    .support-content p {
+        font-size: 1.1rem;
+    }
+}
+
+/* =========================================
+   10. CONTACTO Y FOOTER
+   ========================================= */
+.contacto {
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contacto-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}
+
+.texto-principal h1 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+.texto-principal p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.cards-container {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.card {
+    flex: 1;
+    background-color: #e9ecef;
+    border: 1px solid #001d3d;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
     z-index: 2;
-    /* Está arriba */
 }
 
-/* 2. CONFIGURACIÓN CARA TRASERA (BLANCA) */
-.hero-interactive-card .face-back {
-    opacity: 0;
-    /* Invisible por defecto */
-    transform: translateY(20px);
-    /* Un poquito bajada para que suba al aparecer */
-    z-index: 3;
-    /* Se pondrá arriba al activarse */
-    pointer-events: none;
-    /* Para no clickearla por error cuando está invisible */
+.contact-card.glass {
+    background-color: #e9ecef;
+    backdrop-filter: blur(5px);
+    border: 0.5px solid #333;
+    color: #333;
+    cursor: pointer;
+    min-height: 100px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
 }
 
-/* --- ESTADO HOVER (CUANDO EL MOUSE ENTRA) --- */
-
-/* La cara oscura se desvanece y se achica un pelín */
-.hero-interactive-card:hover .face-front {
-    opacity: 0;
-    transform: scale(0.9);
-}
-
-/* La cara blanca aparece y sube a su lugar */
-.hero-interactive-card:hover .face-back {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
-    /* Ahora sí recibe clicks */
+.bg-edificios {
+    position: absolute;
+    right: 100px;
+    bottom: -20px;
+    height: 400px;
+    z-index: -1;
 }
