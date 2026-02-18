@@ -35,16 +35,16 @@
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4 text-uppercase">
                     <li class="nav-item">
-                        <a class="nav-link custom-link" href="#">Sistema</a>
+                        <a class="nav-link custom-link" href="#info-section">Sistema</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom-link" href="#">Planes</a>
+                        <a class="nav-link custom-link" href="#features-section">Funcionalidades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom-link" href="#">Plataforma</a>
+                        <a class="nav-link custom-link" href="#general-features">Plataforma</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom-link" href="#">Gestión</a>
+                        <a class="nav-link custom-link" href="#condiciones-comerciales">Beneficios</a>
                     </li>
                 </ul>
 
@@ -148,7 +148,7 @@
     </div>
 </section>
 
-<section class="info-section">
+<section class="info-section" id="info-section">
     <div class="container">
 
         <div class="row">
@@ -177,7 +177,7 @@
     </div>
 </section>
 
-    <section class="features-section d-flex align-items-center">
+    <section class="features-section d-flex align-items-center" id="features-section" >
         <div class="container">
             <div class="row g-3 align-items-center">
 
@@ -254,7 +254,7 @@
         </div>
     </section>
 
-<section class="general-features section-padding">
+<section class="general-features section-padding" id="general-features">
     <div class="container position-relative">
 
         <div
@@ -277,12 +277,12 @@
                 <div class="d-flex justify-content-center justify-content-md-start">
 
                     <ul class="list-unstyled features-list-clean text-start px-4 px-md-0">
-                        <li>Aplicación 100 % web</li>
-                        <li>Acceso desde cualquier lugar</li>
-                        <li>Usuarios ilimitados con acceso simultáneo</li>
-                        <li>Documentos personalizados con logo</li>
-                        <li>Backups automáticos diarios</li>
-                        <li>Información histórica siempre disponible</li>
+                        <li style="color: #000;">Aplicación 100 % web</li>
+                        <li style="color: #000;">Acceso desde cualquier lugar</li>
+                        <li style="color: #000;">Usuarios ilimitados con acceso simultáneo</li>
+                        <li style="color: #000;">Documentos personalizados con logo</li>
+                        <li style="color: #000;">Backups automáticos diarios</li>
+                        <li style="color: #000;">Información histórica siempre disponible</li>
                     </ul>
                 </div>
             </div>
@@ -315,7 +315,7 @@
         </div>
     </section>
 
-    <section class="condiciones-comerciales">
+    <section class="condiciones-comerciales" id="condiciones-comerciales">
         <div class="container">
             <video autoplay muted loop playsinline class="video-fondo">
                 <source src="img/seccion_7_video.mp4" type="video/mp4">
@@ -347,7 +347,7 @@
             <div class="contacto-header">
                 <div class="texto-principal">
                     <h1>Contacto</h1>
-                    <h2 style="font-weight: 300;">Solicite una demostración sin cargo <br> o contáctenos para más
+                    <h2 style="font-weight: 300; color: #000;">Solicite una demostración sin cargo <br> o contáctenos para más
                         información.</h2>
                 </div>
                 <a href="#" class="z-box">↑</a>
@@ -371,41 +371,58 @@
                 </ul>
             </div>
 
-            <div class="cards-container row">
-                <div class="col-lg-2 offset-lg-2 col-md-6 col-5  d-none d-md-block">
-                    <div
-                        class="contact-card glass card-hover-effect d-flex flex-column align-items-center justify-content-center p-3 text-center">
-                        <h5 class="m-0 mb-2 transition-title">Rosario (Prov. Santa Fe)</h5>
+        <div class="cards-container">
+            <div class="row g-3 justify-content-center">
+        
+                <div class="col-6 col-md-3">
+                    <div class="contact-card glass">
+                        <div class="face icon-face">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div class="face info-face">
+                            <h5 class="m-0">Rosario<br><small>(Prov. Santa Fe)</small></h5>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-lg-2 col-md-6 col-5  d-none d-md-block">
-                    <div
-                        class="contact-card glass card-hover-effect d-flex flex-column align-items-center justify-content-center p-3 text-center">
-                        <h5 class="m-0 mb-2 transition-title">ambortd <br>@hotmail.com</h5>
+        
+                <div class="col-6 col-md-3">
+                    <a href="mailto:ambortd@hotmail.com" class="contact-card glass">
+                        <div class="face icon-face">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div class="face info-face">
+                            <h5 class="m-0" style="font-size: 0.9rem;">ambortd<br>@hotmail.com</h5>
+                        </div>
+                    </a>
+                </div>
+        
+                <div class="col-6 col-md-3">
+                    <a href="https://wa.me/5493416487244" target="_blank" class="contact-card glass">
+                        <div class="face icon-face">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div class="face info-face">
+                            <h5 class="m-0">341-6487244</h5>
+                        </div>
+                    </a>
+                </div>
+        
+                <div class="col-6 col-md-3">
+                    <div class="contact-card glass">
+                        <div class="face icon-face">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="face info-face">
+                            <h5 class="m-0">Daniel E. Ambort</h5>
+                        </div>
                     </div>
                 </div>
-
-
-                <div class="col-lg-2 col-md-6 col-5  d-none d-md-block">
-                    <div
-                        class="contact-card glass card-hover-effect d-flex flex-column align-items-center justify-content-center p-3 text-center">
-                        <h5 class="m-0 mb-2 transition-title">341-6487244</h5>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-2 col-md-6 col-5 d-none d-md-block">
-                    <div
-                        class="contact-card glass card-hover-effect d-flex flex-column align-items-center justify-content-center p-3 text-center">
-                        <h5 class="m-0 mb-2 transition-title">Daniel E. Ambort</h5>
-                    </div>
-                </div>
-
-               
-
+        
             </div>
-                            <img src="img/edificios_oscuros.png" alt="Edificios" class="bg-edificios d-none d-md-block">
+        
+            <img src="img/edificios_oscuros.png" alt="Edificios" class="bg-edificios d-none d-md-block">
+        </div>
+                            <!-- <img src="img/edificios_oscuros.png" alt="Edificios" class="bg-edificios d-none d-md-block"> -->
 
         </div>
 
@@ -414,7 +431,7 @@
 
     <footer class="py-4 border-top border-secondary text-center" id="contacto">
         <div class="container">
-            <p class="text-secondary mb-0">&copy; AGUANTE BOCAAAAAAAAA</p>
+            <p class="text-secondary mb-0">&copy; <a href="https://www.instagram.com/akrasiaok/">AKRASIA</a></p>
         </div>
     </footer>
 

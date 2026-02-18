@@ -7,7 +7,7 @@
     --zc-blue-hover: #004b85;
     --zc-blue-light: #3b9cd2;
     --zc-cyan: #6caddf;
-    --zc-gray-bg: #eef1f3;
+    --zc-gray-bg: #d8d8d8;
     --zc-text-dark: #0b1e33;
     --zc-text-gray: #555555;
 }
@@ -134,7 +134,7 @@ a {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 80vh;
+    min-height: 120vh;
     color: #ffffff;
     padding: 40px 0;
     position: relative;
@@ -343,7 +343,7 @@ a {
 .features-section {
     background-image: url('img/SECCION_4_LIQ_Y_COBR_300.png');
     background-position: center;
-    min-height: 600px;
+    min-height: 110vh;
     padding: 60px 0;
     position: relative;
     background-attachment: fixed;
@@ -461,12 +461,13 @@ a {
     padding: 80px 0;
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
 }
 
 .general-title {
     font-weight: 400;
     font-size: 2.5rem;
-    color: var(--zc-text-dark);
+    color: #000;
 }
 
 .z-box {
@@ -533,7 +534,7 @@ a {
 .condiciones-comerciales {
     position: relative;
     width: 100%;
-    min-height: 80vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -720,6 +721,7 @@ a {
     font-size: 3rem;
     margin: 0;
     font-weight: 400;
+    color: #000;
 }
 
 .texto-principal p {
@@ -727,41 +729,121 @@ a {
     margin-top: 10px;
 }
 
+/* Contenedor principal */
 .cards-container {
-    display: flex;
-    gap: 20px;
     position: relative;
     z-index: 1;
+    padding: 20px 0;
 }
 
-.card {
-    flex: 1;
+/* --- ESTILO BASE DE LA TARJETA --- */
+.contact-card.glass {
+    position: relative;
+    display: block;
+    /* Para que el <a> funcione bien */
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    /* Cuadrado perfecto */
+
     background-color: #e9ecef;
+    /* Gris claro (como la referencia) */
     border: 1px solid #001d3d;
-    height: 250px;
+    /* Borde oscuro fino */
+
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    /* Quita subrayado de links */
+    color: #001d3d;
+
+    transition: all 0.3s ease;
+}
+
+/* --- LAS DOS CARAS (ICONO Y TEXTO) --- */
+.contact-card .face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 20px;
-    z-index: 2;
+    padding: 10px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.contact-card.glass {
-    background-color: #e9ecef;
-    backdrop-filter: blur(5px);
-    border: 0.5px solid #333;
-    color: #333;
-    cursor: pointer;
-    min-height: 100px;
-    aspect-ratio: 1 / 1;
-    width: 100%;
+/* 1. CARA DEL ICONO (Visible inicial) */
+.icon-face {
+    opacity: 1;
+    transform: translateY(0);
 }
 
+.icon-face i {
+    font-size: 2.5rem;
+    /* Icono grande */
+    color: #0060a9;
+    /* Azul institucional (como la referencia) */
+}
+
+/* 2. CARA DE INFORMACIÓN (Oculta inicial) */
+.info-face {
+    opacity: 0;
+    transform: translateY(20px);
+    /* Empieza un poco abajo */
+}
+
+.info-face h5 {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #001d3d;
+    word-break: break-word;
+    /* Para que el mail no rompa la caja */
+}
+
+/* --- EFECTO HOVER / TAP (LA MAGIA) --- */
+
+/* Al pasar el mouse (o tocar en celular): */
+.contact-card.glass:hover,
+.contact-card.glass:active {
+    /* :active ayuda en algunos móviles */
+    background-color: #ffffff;
+    /* FONDO SE VUELVE BLANCO */
+    border-color: #004b85;
+    /* Borde un poco más azul */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* El icono se va para arriba y desaparece */
+.contact-card.glass:hover .icon-face,
+.contact-card.glass:active .icon-face {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* El texto aparece y sube al centro */
+.contact-card.glass:hover .info-face,
+.contact-card.glass:active .info-face {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- AJUSTES EXTRA --- */
 .bg-edificios {
     position: absolute;
-    right: 250px;
-    bottom: 50px;
-    height: 350px;
+    right: 0;
+    bottom: 0;
+    height: 450px;
     z-index: -1;
+    /* opacity: 0.8; */
+}
+
+/* Ajuste específico para móvil para asegurar que el mail entre bien */
+@media (max-width: 576px) {
+    .info-face h5 {
+        font-size: 0.85rem;
+        /* Texto un poquito más chico en celus angostos */
+    }
 }
