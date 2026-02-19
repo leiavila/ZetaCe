@@ -303,7 +303,7 @@ a {
    5. SECCIÓN QUÉ ES (INFO)
    ========================================= */
 .info-section {
-    background: radial-gradient(circle at 30% 50%, #004e8a 0%, #00284a 100%);
+    /* background: radial-gradient(circle at 30% 50%, #004e8a 0%, #00284a 100%); */
     background-image: url('img/seccion_3_300.png');
     background-size: cover;
     background-position: center;
@@ -443,7 +443,7 @@ a {
 }
 
 .card-hover-effect:hover .transition-title {
-    color: var(--zc-blue-light);
+    color: var(--zc-blue-dark);
 }
 
 .card-hover-effect:hover .hidden-content {
@@ -467,7 +467,7 @@ a {
 .general-title {
     font-weight: 400;
     font-size: 2.5rem;
-    color: #000;
+    color: var(--zc-blue-dark);
 }
 
 .z-box {
@@ -529,19 +529,16 @@ a {
 }
 
 /* =========================================
-   8. SECCIÓN CONDICIONES COMERCIALES
+   SECCIÓN: IMPLEMENTACIÓN Y BENEFICIOS
    ========================================= */
+
 .condiciones-comerciales {
-    position: relative;
-    width: 100%;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
     overflow: hidden;
     color: white;
-    padding: 60px 0;
 }
 
+/* Video de fondo a pantalla completa */
 .video-fondo {
     position: absolute;
     top: 0;
@@ -549,99 +546,91 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: 0;
 }
 
-.contenido-overlay {
-    max-width: 1200px;
-    margin: 0 auto;
-    z-index: 1;
-}
-
-.container-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-}
-
-.texto-comercial {
-    flex: 1;
-}
-
-.texto-comercial h1 {
-    font-size: 2.8rem;
-    margin-bottom: 30px;
-    font-weight: 400;
-}
-
-.lista-condiciones {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 40px;
-}
-
-.lista-condiciones li {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    position: relative;
-    padding-left: 25px;
-}
-
-.lista-condiciones li::before {
-    content: "◇";
+/* Capa oscura sobre el video para contrastar el texto */
+/* .video-overlay {
     position: absolute;
+    top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 15, 25, 0.7);
+    /* Ajusta el 0.7 para más o menos oscuridad */
+    /* z-index: 0;
+} */ */
+
+/* Título */
+.impl-title {
+    font-size: 6rem;
+    font-weight: 300;
     color: #ffffff;
-    font-size: 0.9rem;
+    letter-spacing: 0.5px;
 }
 
-.btn-demo {
+/* Cajas de Beneficios */
+.impl-card {
+    background-color: #122431;
+    /* Azul oscuro que pasaste */
+    border: 1px solid #3f627d;
+    /* Borde celeste que pasaste */
+    padding: 30px 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.impl-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.impl-card h5 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.impl-card p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    margin-bottom: 0;
+    color: #d1d9e0;
+    /* Un gris muy clarito para el texto secundario */
+}
+
+/* Botón Rectangular Gris/Blanco */
+.btn-demo-solid {
     display: inline-block;
-    background-color: #e9ecef;
-    color: #001d3d;
-    padding: 15px 40px;
-    text-decoration: none;
+    background-color: #f0f0f0;
+    /* Gris muy clarito/casi blanco */
+    color: #333333;
     font-size: 1.1rem;
-    transition: background 0.3s;
+    font-weight: 400;
+    padding: 15px 30px;
+    width: 100%;
+    max-width: 450px;
+    /* Ancho máximo para que no sea infinito en PC */
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn-demo:hover {
-    background-color: #d1d4d7;
+.btn-demo-solid:hover {
+    background-color: #ffffff;
+    color: #000000;
 }
 
-.imagenes-comercial {
-    display: flex;
-    gap: 20px;
-    flex: 1;
-    justify-content: flex-end;
-}
-
-.foto-comercial {
-    width: 220px;
-    height: 350px;
-    object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-@media (max-width: 992px) {
-    .container-flex {
-        flex-direction: column;
-        text-align: center;
+/* Ajustes Responsive para Celulares */
+@media (max-width: 768px) {
+    .impl-title {
+        font-size: 2.2rem;
     }
 
-    .imagenes-comercial {
-        justify-content: center;
-    }
-
-    .lista-condiciones li {
-        padding-left: 0;
-    }
-
-    .lista-condiciones li::before {
-        display: none;
+    .impl-card {
+        padding: 20px 15px;
     }
 }
+
 
 /* =========================================
    9. SECCIÓN SOPORTE Y ACOMPAÑAMIENTO
@@ -653,7 +642,7 @@ a {
     background-position: center;
     background-attachment: fixed;
     padding: 100px 0;
-    min-height: 100vh;
+    min-height: 110vh;
     color: white;
 }
 
@@ -845,5 +834,80 @@ a {
     .info-face h5 {
         font-size: 0.85rem;
         /* Texto un poquito más chico en celus angostos */
+    }
+}
+
+
+/* --- TARJETAS BLANCAS DE SOPORTE --- */
+.support-card {
+    width: 100%;
+    max-width: 750px;
+    /* Limita el ancho para que queden como en la foto */
+    border-radius: 0;
+    /* Bordes rectos */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Pequeño efecto al pasar el mouse (opcional, pero queda bien) */
+.support-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Contenedor del icono */
+.support-icon {
+    min-width: 100px;
+    /* Asegura que ambos iconos ocupen el mismo ancho fijo */
+}
+
+.support-icon i {
+    font-size: 3.5rem;
+    /* Tamaño del icono */
+    color: var(--zc-blue-main, #0060a9);
+    /* Azul institucional */
+}
+
+/* Título azul de la tarjeta */
+.support-card-title {
+    color: var(--zc-blue-light, #3b9cd2);
+    /* Usé el celeste de tus variables */
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 1.15rem;
+}
+
+/* Línea separadora y texto */
+.support-text {
+    border-left: 2px solid var(--zc-blue-light, #3b9cd2);
+    /* La línea celeste */
+}
+
+.support-text p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- ADAPTACIÓN PARA CELULARES --- */
+@media (max-width: 768px) {
+    .support-card {
+        flex-direction: column;
+        /* Apila el icono arriba y el texto abajo */
+        text-align: center !important;
+        padding: 30px 20px !important;
+    }
+
+    .support-icon {
+        padding-right: 0 !important;
+        margin-bottom: 15px;
+        /* Espacio debajo del icono */
+    }
+
+    .support-text {
+        padding-left: 0 !important;
+        border-left: none;
+        /* Quitamos la línea vertical... */
+        border-top: 2px solid var(--zc-blue-light, #3b9cd2);
+        /* ...y la ponemos horizontal arriba */
+        padding-top: 15px;
     }
 }
