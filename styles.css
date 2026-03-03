@@ -1,5 +1,5 @@
 /* =========================================
-   1. CONFIGURACIÓN GLOBAL, FUENTES Y VARIABLES
+   1. GLOBAL & VARIABLES
    ========================================= */
 :root {
     --zc-blue-dark: #020d1c;
@@ -58,6 +58,7 @@ body {
     color: var(--zc-text-gray);
     background-color: #e9ecef;
     overflow-x: hidden;
+    position: relative;
 }
 
 h1,
@@ -112,8 +113,20 @@ a {
     transition: color 0.3s ease;
 }
 
-.custom-link:hover {
+.custom-link:hover,
+.custom-link.active {
     color: var(--zc-blue-main) !important;
+}
+
+.custom-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 15%;
+    width: 70%;
+    height: 4px;
+    background-color: var(--zc-blue-main);
+    border-radius: 2px;
 }
 
 .btn-contacto {
@@ -133,19 +146,17 @@ a {
 }
 
 /* =========================================
-   3. HERO SECTION (PORTADA)
+   3. HERO SECTION
    ========================================= */
 .hero-section {
     background-color: var(--zc-blue-dark);
     background-image: url('img/foto_1_300.png');
     background-attachment: fixed;
     background-position: right top;
-    /* CLAVE: Empuja el edificio a la derecha */
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
     color: #ffffff;
-    /* Reducimos el padding superior para que se pegue más al menú */
     padding: 90px 0 60px 0;
     position: relative;
     z-index: 1;
@@ -164,22 +175,17 @@ a {
 .hero-title {
     font-weight: 300;
     letter-spacing: -0.5px;
-    font-size: 42px;
-    /* Exacto a lo pedido */
+    font-size: 3.5rem;
     line-height: 1.15;
 }
 
-/* --- TARJETAS EXACTAS --- */
 .hero-card {
     width: 290px;
-    /* Exacto a lo pedido */
     height: 290px;
-    /* Exacto a lo pedido */
 }
 
 .hero-card-text {
     font-size: 19px;
-    /* Exacto a lo pedido */
     font-weight: 400;
     line-height: 1.3;
 }
@@ -230,7 +236,6 @@ a {
     pointer-events: all;
 }
 
-/* Fondo de las cajas oscuras un poco más sutil, como en la foto */
 .card-dark {
     background-color: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(8px);
@@ -261,19 +266,16 @@ a {
     color: var(--zc-blue-main);
 }
 
-/* --- ADAPTACIÓN MOBILE FIRST --- */
 @media (max-width: 992px) {
     .hero-section {
         padding-top: 80px;
         min-height: auto;
         padding-bottom: 80px;
         background-position: center top;
-        /* En celu centramos el fondo para que no se pierda el edificio */
     }
 
     .hero-title {
         font-size: 40px;
-        /* Achicamos para celu */
     }
 
     .hero-card {
@@ -292,7 +294,6 @@ a {
    ========================================= */
 .benefits-section {
     background-color: var(--zc-gray-bg);
-    /* Aplicamos el fondo gris bro */
     padding: 80px 0;
     color: var(--zc-text-dark);
 }
@@ -300,12 +301,19 @@ a {
 .benefits-title {
     color: var(--zc-blue-main);
     font-weight: 400;
-    font-size: 42px;
-    /* Tamaño solicitado para PC */
+    font-size: 52px;
     margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Configuramos la lista según el diseño */
+.benefits-title.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .custom-list {
     margin-top: 20px;
 }
@@ -313,42 +321,80 @@ a {
 .custom-list li {
     position: relative;
     padding-left: 50px;
-    /* Espacio para la viñeta */
     padding-bottom: 25px;
-    /* Espacio entre el texto y la línea divisoria */
     margin-bottom: 25px;
-    /* Espacio después de la línea divisoria */
-    font-size: 24px;
-    /* Tamaño solicitado para PC */
+    font-size: 30px;
     font-weight: 300;
     line-height: 1.2;
-    color: #000000;
-    border-bottom: 1px solid #333333;
-    /* La línea separadora */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* El cuadradito negro de la viñeta */
 .custom-list li::before {
     content: "■";
     color: #000000;
-    /* Viñeta negra */
     font-size: 1.5rem;
     position: absolute;
     left: 0;
     top: 6px;
-    /* Ajuste para que quede centrado con la letra de 36px */
 }
 
-/* --- RESPONSIVE PARA CELULARES --- */
+.custom-list li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #333333;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.custom-list.is-visible li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.custom-list.is-visible li::after {
+    transform: scaleX(1);
+}
+
+.custom-list.is-visible li:nth-child(1),
+.custom-list.is-visible li:nth-child(1)::after {
+    transition-delay: 0.2s;
+}
+
+.custom-list.is-visible li:nth-child(2),
+.custom-list.is-visible li:nth-child(2)::after {
+    transition-delay: 0.6s;
+}
+
+.custom-list.is-visible li:nth-child(3),
+.custom-list.is-visible li:nth-child(3)::after {
+    transition-delay: 1.0s;
+}
+
+.custom-list.is-visible li:nth-child(4),
+.custom-list.is-visible li:nth-child(4)::after {
+    transition-delay: 1.4s;
+}
+
+.custom-list.is-visible li:nth-child(5),
+.custom-list.is-visible li:nth-child(5)::after {
+    transition-delay: 1.8s;
+}
+
 @media (max-width: 768px) {
     .benefits-title {
         font-size: 2.5rem;
-        /* Achicamos el título en celu */
     }
 
     .custom-list li {
         font-size: 1.5rem;
-        /* Achicamos los ítems en celu */
         padding-left: 35px;
         padding-bottom: 15px;
         margin-bottom: 15px;
@@ -377,13 +423,13 @@ a {
 }
 
 .info-title {
-    font-size: 54px;
+    font-size: 56px;
     font-weight: 400;
     margin-bottom: 1rem;
 }
 
 .info-text {
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 300;
     line-height: 1.6;
     opacity: 0.9;
@@ -396,97 +442,206 @@ a {
     height: auto;
 }
 
+.info-title,
+.info-text,
+.software-img {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.info-title.is-visible,
+.software-img.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.info-text.is-visible {
+    opacity: 0.9;
+    transform: translateY(0);
+}
+
+.info-title.is-visible {
+    transition-delay: 0.2s;
+}
+
+.info-text:nth-of-type(1).is-visible {
+    transition-delay: 0.6s;
+}
+
+.info-text:nth-of-type(2).is-visible {
+    transition-delay: 1.0s;
+}
+
+.software-img.is-visible {
+    transition-delay: 1.4s;
+}
+
 /* =========================================
-   6. SECCIÓN FUNCIONALIDADES (CARDS)
+   6. SECCIÓN FUNCIONALIDADES (ACORDEÓN)
    ========================================= */
 .features-section {
-    background-image: url('img/SECCION_4_LIQ_Y_COBR_300.png');
-    background-position: center;
+    background-color: var(--zc-blue-dark);
+    min-height: 110vh;
     padding: 80px 0;
     position: relative;
-    background-attachment: fixed;
-    background-size: cover;
-    min-height: 110vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
-.features-section::before {
-    content: "";
+.bg-fade-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.bg-fade-layer.active {
+    opacity: 1;
+}
+
+.features-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
-.features-section .container {
+.features-section .container-fluid {
     position: relative;
     z-index: 2;
 }
 
-.feature-card.glass {
-    background-color: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #333;
-    cursor: pointer;
-    min-height: 250px;
-    width: 100%;
-    padding: 2rem !important;
-    display: flex;
-    flex-direction: column;
+.accordion-container {
     align-items: center;
     justify-content: center;
+    height: auto;
+    min-height: 600px;
+}
+
+.feature-card.glass {
+    width: 250px;
+    height: 250px;
+    flex: none;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 0;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease;
 }
 
-.feature-card.glass h5 {
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: #222;
+.transition-title {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--zc-text-dark);
+    transition: all 0.4s ease;
 }
 
-.card-hover-effect {
+.hidden-content {
+    max-height: 0;
+    opacity: 0;
     overflow: hidden;
 }
 
-.card-hover-effect .hidden-content {
-    max-height: 0;
-    opacity: 0;
-    margin-top: 0;
-    transition: all 0.4s ease-in-out;
+.hidden-content p {
+    font-size: 19px;
+    color: #555555;
+    text-align: left;
 }
 
-.card-hover-effect:hover {
-    background-color: #ffffff !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    transform: translateY(-5px);
-    border-color: transparent;
+.action-link {
+    color: var(--zc-text-dark);
+    font-size: 19px;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
-.card-hover-effect:hover .transition-title {
+.action-link i {
+    font-size: 24px;
+}
+
+.action-link:hover {
     color: var(--zc-blue-main);
 }
 
-.card-hover-effect:hover .hidden-content {
-    max-height: 200px;
+@media (min-width: 992px) {
+    .feature-card.glass:hover {
+        width: 400px;
+        height: 400px;
+        background-color: #ffffff !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        backdrop-filter: none;
+    }
+}
+
+.feature-card.glass:hover .card-inner {
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.feature-card.glass:hover .transition-title {
+    font-size: 24px;
+    color: var(--zc-blue-dark);
+    text-align: left;
+}
+
+.feature-card.glass:hover .hidden-content {
+    max-height: 500px;
     opacity: 1;
-    margin-top: 15px;
 }
 
 @media (max-width: 992px) {
-    .feature-card.glass {
+    .features-section {
         min-height: auto;
-        background-color: #ffffff !important;
-        padding: 1.5rem !important;
+        padding: 60px 0;
     }
 
-    .card-hover-effect .hidden-content {
-        max-height: 500px;
-        opacity: 1;
-        margin-top: 15px;
+    .accordion-container {
+        min-height: auto;
+    }
+
+    .feature-card.glass {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        background-color: rgba(255, 255, 255, 0.85);
     }
 
     .transition-title {
-        color: var(--zc-blue-main);
+        font-size: 20pt;
+    }
+
+    .hidden-content p {
+        font-size: 16pt;
+    }
+
+    .feature-card.glass:hover {
+        height: auto;
+    }
+
+    .feature-card.glass:hover .transition-title {
+        font-size: 20px;
     }
 }
 
@@ -505,8 +660,17 @@ a {
 .general-title {
     font-weight: 400;
     font-size: 42px;
-    /* Tamaño solicitado por el cliente */
     color: var(--zc-blue-dark);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.general-title.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
 }
 
 .z-box {
@@ -545,14 +709,16 @@ a {
 
 .features-list-clean li {
     font-size: 22px;
-    /* Tamaño solicitado por el cliente */
     color: #000000;
-    /* Color negro aplicado directamente desde acá */
     margin-bottom: 30px;
     position: relative;
     padding-left: 25px;
     font-weight: 300;
     line-height: 1.3;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .features-list-clean li::before {
@@ -560,23 +726,57 @@ a {
     position: absolute;
     left: 0;
     top: 15px;
-    /* Acomodado para que quede centrado con la nueva letra de 32px */
     width: 6px;
     height: 6px;
     background-color: #000;
 }
 
-.building-icon {
-    max-height: 500px;
-    /* Edificio mucho más grande (antes estaba en 300px) */
-    opacity: 0.8;
+.features-list-clean.is-visible li {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* --- ADAPTACIÓN MOBILE FIRST --- */
+.features-list-clean.is-visible li:nth-child(1) {
+    transition-delay: 0.8s;
+}
+
+.features-list-clean.is-visible li:nth-child(2) {
+    transition-delay: 1s;
+}
+
+.features-list-clean.is-visible li:nth-child(3) {
+    transition-delay: 1.2s;
+}
+
+.features-list-clean.is-visible li:nth-child(4) {
+    transition-delay: 1.4s;
+}
+
+.features-list-clean.is-visible li:nth-child(5) {
+    transition-delay: 1.6s;
+}
+
+.features-list-clean.is-visible li:nth-child(6) {
+    transition-delay: 1.8s;
+}
+
+.building-icon {
+    max-height: 500px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.building-icon.is-visible {
+    opacity: 0.8;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
 @media (max-width: 992px) {
     .general-title {
         font-size: 40px;
-        /* Para que no rompa el celular */
     }
 
     .features-list-clean li {
@@ -625,6 +825,8 @@ a {
     width: 100%;
     max-width: 800px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10;
 }
 
 .title-box h2 {
@@ -638,7 +840,36 @@ a {
     width: 100%;
     max-width: 750px;
     border-radius: 0;
+    position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.support-card:nth-child(1) {
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 1s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.support-card:nth-child(2) {
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.support-card.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.support-card:nth-child(1).is-visible {
+    transition-delay: 1s;
+}
+
+.support-card:nth-child(2).is-visible {
+    transition-delay: 2s;
 }
 
 .support-card:hover {
