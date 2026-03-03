@@ -17,7 +17,12 @@
 </head>
 
 <body>
-
+<div id="preloader">
+    <div class="loader-brand">
+        <img src="img/ZETACE SOLO.png" alt="Cargando ZetaCe...">
+        <div class="loader-bar"></div>
+    </div>
+</div>
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 custom-navbar">
         <div class="container-fluid px-5">
             <a class="navbar-brand brand-box" href="#">
@@ -419,6 +424,18 @@
                 });
             }, {
                 threshold: 0.2
+            });
+
+            // PANTALLA DE CARGA: Se ejecuta cuando TODAS las imágenes y recursos terminaron de cargar
+            window.addEventListener('load', function () {
+                const preloader = document.getElementById('preloader');
+                // Le agregamos la clase que hace el fundido transparente
+                preloader.classList.add('preloader-hidden');
+
+                // (Opcional) Lo removemos completamente del código después de 600ms para que no estorbe
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 600);
             });
 
             const elementsToAnimate = document.querySelectorAll('.custom-list, .benefits-title, .info-title, .info-text, .software-img, .general-title, .building-icon, .features-list-clean, .support-card');
