@@ -473,7 +473,20 @@ a {
     transition-delay: 1.8s;
 }
 
+/* --- RESPONSIVE PARA CELULARES --- */
 @media (max-width: 768px) {
+
+    /* 1. Le damos un padding más generoso a toda la sección (arriba/abajo y a los lados) */
+    .benefits-section {
+        padding: 60px 20px;
+    }
+
+    /* 2. Ocultamos el botón de la flecha solo en celulares */
+    .benefits-section .z-box {
+        display: none !important;
+    }
+
+    /* 3. Ajustamos el título y la lista (como ya lo tenías) */
     .benefits-title {
         font-size: 2.5rem;
     }
