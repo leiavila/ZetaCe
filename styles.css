@@ -54,6 +54,8 @@
     animation: loadingBar 1.5s infinite ease-in-out;
 }
 
+
+
 /* --- KEYFRAMES (Las instrucciones de movimiento) --- */
 @keyframes pulse {
     0% {
@@ -176,10 +178,18 @@ a {
 /* =========================================
    2. NAVBAR
    ========================================= */
+/* .custom-navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+} */
+
 .custom-navbar {
     background-color: #ffffff !important;
     border-bottom: 1px solid #eaeaea;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1030;
+    /* Agrega esta línea */
 }
 
 .brand-box {
@@ -189,6 +199,8 @@ a {
 }
 
 .custom-link {
+    position: relative;
+    /* ¡Súper importante para que se vea el subrayado! */
     color: var(--zc-blue-light) !important;
     font-size: 0.85rem;
     font-weight: 600;
@@ -229,6 +241,16 @@ a {
     background-color: var(--zc-blue-hover);
     color: #ffffff;
 }
+
+/* Le damos una transición suave al menú y al logo */
+.custom-navbar {
+    transition: all 0.3s ease-in-out;
+}
+
+.brand-box img {
+    transition: height 0.3s ease-in-out;
+}
+
 
 /* =========================================
    3. HERO SECTION
@@ -905,6 +927,7 @@ a {
     background-attachment: fixed;
     padding: 100px 0;
     color: white;
+    min-height: 110vh;
 }
 
 .support-section::before {
@@ -1254,3 +1277,4 @@ a {
         font-size: 0.85rem;
     }
 }
+
