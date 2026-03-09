@@ -468,16 +468,25 @@
             });
 
 
-            // --- PANTALLA DE CARGA ---
-            window.addEventListener('load', function () {
+           // --- PANTALLA DE CARGA MEJORADA ---
+            let preloaderOculto = false;
+
+            function ocultarPreloader() {
+                if (preloaderOculto) return; // Evita que se ejecute dos veces
+                preloaderOculto = true;
+
                 const preloader = document.getElementById('preloader');
                 if (preloader) {
                     preloader.classList.add('preloader-hidden');
-                    setTimeout(() => {
-                        preloader.style.display = 'none';
-                    }, 600);
+                    setTimeout(() => { preloader.style.display = 'none'; }, 600);
                 }
-            });
+            }
+
+            // Intentamos ocultarlo cuando cargue todo...
+            window.addEventListener('load', ocultarPreloader);
+
+            // ...pero si tarda más de 1.5 segundos, lo ocultamos a la fuerza
+            setTimeout(ocultarPreloader, 1500);
 
         });
     </script>
