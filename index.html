@@ -409,7 +409,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // --- FUNCIÓN GLOBAL ---
         window.cambiarFondo = function (idCapa) {
             document.querySelectorAll('.bg-fade-layer').forEach(layer => {
                 layer.classList.remove('active');
@@ -418,8 +417,6 @@
         };
 
         document.addEventListener("DOMContentLoaded", function () {
-
-            // --- ANIMACIONES (INTERSECTION OBSERVER) ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -434,23 +431,16 @@
             const elementsToAnimate = document.querySelectorAll('.custom-list, .benefits-title, .info-title, .info-text, .software-img, .general-title, .building-icon, .features-list-clean, .support-card');
             elementsToAnimate.forEach(el => observer.observe(el));
 
-
-            // --- SCROLLSPY CLÁSICO (A PRUEBA DE BALAS) ---
             const sections = document.querySelectorAll("section[id]");
             const navLinks = document.querySelectorAll(".custom-link");
 
             window.addEventListener("scroll", () => {
-                // Obtenemos la posición actual de la barra de scroll
                 let scrollY = window.scrollY;
-
                 sections.forEach(section => {
-                    // Tomamos el inicio y el alto de cada sección
-                    // Restamos 200px de margen para compensar el menú fijo (navbar)
                     const sectionTop = section.offsetTop - 200;
                     const sectionHeight = section.offsetHeight;
                     const sectionId = section.getAttribute("id");
 
-                    // Chequeamos si la barra de scroll está DENTRO de esta sección en particular
                     if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                         navLinks.forEach(link => {
                             link.classList.remove("active");
@@ -461,18 +451,15 @@
                     }
                 });
 
-                // Limpieza extra: si scrolleás de vuelta arriba de todo (al Hero), limpiamos el menú
                 if (scrollY < 150) {
                     navLinks.forEach(link => link.classList.remove("active"));
                 }
             });
 
-
-           // --- PANTALLA DE CARGA MEJORADA ---
             let preloaderOculto = false;
 
             function ocultarPreloader() {
-                if (preloaderOculto) return; // Evita que se ejecute dos veces
+                if (preloaderOculto) return; 
                 preloaderOculto = true;
 
                 const preloader = document.getElementById('preloader');
@@ -482,10 +469,7 @@
                 }
             }
 
-            // Intentamos ocultarlo cuando cargue todo...
             window.addEventListener('load', ocultarPreloader);
-
-            // ...pero si tarda más de 1.5 segundos, lo ocultamos a la fuerza
             setTimeout(ocultarPreloader, 1500);
 
         });
