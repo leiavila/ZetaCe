@@ -110,13 +110,13 @@
     font-display: swap;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Exo';
     src: url('./fonts/Exo-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
-}
+} */
 
 @font-face {
     font-family: 'Exo';
@@ -324,12 +324,15 @@ a {
     pointer-events: none;
 }
 
-.hero-interactive-card:hover .face-front {
+/* Animación para escritorio (hover) y para móvil (clase mobile-active) */
+.hero-interactive-card:hover .face-front,
+.hero-interactive-card.mobile-active .face-front {
     opacity: 0;
     transform: scale(0.9);
 }
 
-.hero-interactive-card:hover .face-back {
+.hero-interactive-card:hover .face-back,
+.hero-interactive-card.mobile-active .face-back {
     opacity: 1;
     transform: translateY(0);
     pointer-events: all;
@@ -387,6 +390,8 @@ a {
         font-size: 24px;
     }
 }
+
+
 
 /* =========================================
    4. SECCIÓN BENEFICIOS
@@ -722,36 +727,84 @@ a {
 }
 
 @media (max-width: 992px) {
+
+    /* Dejamos solo la imagen 1 de fondo para mobile y apagamos las otras capas */
     .features-section {
         min-height: auto;
         padding: 60px 0;
+        background-image: url('img/SECCION_4_LIQ_Y_COBR_300.png') !important;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed !important;
+    }
+
+    .bg-fade-layer {
+        display: none !important;
     }
 
     .accordion-container {
         min-height: auto;
+        gap: 15px !important;
+        /* Espacio uniforme entre tarjetas */
     }
 
     .feature-card.glass {
         width: 100%;
-        height: auto;
-        min-height: 200px;
-        background-color: rgba(255, 255, 255, 0.85);
+        height: auto !important;
+        min-height: auto !important;
+        /* Eliminamos el espacio blanco vacío */
+        background-color: rgba(255, 255, 255, 0.85) !important;
+        /* Tu color original mobile */
+        cursor: pointer;
+    }
+
+    .feature-card.glass .card-inner {
+        padding: 20px !important;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .transition-title {
         font-size: 20pt;
+        text-align: left;
+        color: var(--zc-blue-dark) !important;
     }
 
     .hidden-content p {
         font-size: 16pt;
+        color: #555555;
     }
 
-    .feature-card.glass:hover {
-        height: auto;
+    /* Lógica Acordeón Mobile */
+    .feature-card.glass .hidden-content {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 0 !important;
+        transition: all 0.4s ease;
     }
 
-    .feature-card.glass:hover .transition-title {
-        font-size: 20px;
+    /* Estado ABIERTO en mobile */
+    .feature-card.glass.is-expanded .hidden-content {
+        max-height: 800px;
+        opacity: 1;
+        margin-top: 15px !important;
+    }
+
+    /* Comportamiento flechita */
+    .chevron-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card.glass.is-expanded .chevron-icon {
+        transform: rotate(180deg);
+    }
+
+    /* Desactivar cualquier hover accidental en celulares */
+    .feature-card.glass:hover .hidden-content:not(.feature-card.glass.is-expanded .hidden-content) {
+        max-height: 0;
+        opacity: 0;
     }
 }
 
