@@ -151,26 +151,30 @@
     </section>
 
 <section class="features-section d-flex align-items-center" id="features-section">
-    <div class="bg-fade-layer active" id="bg-1" style="background-image: url('img/SECCION_4_LIQ_Y_COBR_300.png');"></div>
+    <div class="bg-fade-layer active" id="bg-1" style="background-image: url('img/SECCION_4_LIQ_Y_COBR_300.png');">
+    </div>
     <div class="bg-fade-layer" id="bg-2" style="background-image: url('img/SECCION 4 COMU.png');"></div>
     <div class="bg-fade-layer" id="bg-3" style="background-image: url('img/SECCION 4 ESTADO DE CUENTAS.png');"></div>
     <div class="bg-fade-layer" id="bg-4" style="background-image: url('img/SECCION 4 PORTAL2.png');"></div>
 
     <div class="features-overlay"></div>
 
-    <div class="container-fluid px-4 px-lg-5" style="max-width: 1800px;">
-        <div class="accordion-container d-flex flex-column flex-lg-row gap-3 w-100">
+    <div class="container-fluid px-4 px-lg-5" style="max-width: 1800px; position: relative; z-index: 2;">
+        <div class="accordion-container d-flex flex-column flex-lg-row gap-3 w-100 justify-content-center">
 
-            <div class="feature-card glass card-hover-effect" onmouseenter="cambiarFondo('bg-1')">
+            <div class="feature-card glass" onmouseenter="cambiarFondo('bg-1')" onclick="toggleMobileAccordion(this)">
                 <div class="card-inner w-100 h-100 p-4">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <h5 class="m-0 transition-title w-100">Liquidación & cobranzas</h5>
-                        <i class="bi bi-chevron-down d-lg-none fs-4 chevron-icon"></i>
+                        <h5 class="m-0 transition-title text-start w-100">Liquidación & cobranzas</h5>
+                        <i class="bi bi-chevron-down chevron-icon d-lg-none fs-4"></i>
                     </div>
-                    <div class="hidden-content mt-4 w-100">
-                        <p class="m-0">Cargue los gastos del consorcio y genere las liquidaciones de forma ágil con envío automático por email. El sistema integra todos los medios de pago e imputa las cobranzas automáticamente, minimizando errores y optimizando su tiempo administrativo.</p>
-                        <div class="mt-4 pt-3 w-100 line-separator" style="border-top: 1px solid rgba(255,255,255,0.3);">
-                            <a href="mailto:ambortd@hotmail.com?subject=Consulta sobre Liquidación y Cobranzas" class="d-flex justify-content-between align-items-center text-decoration-none action-link">
+                    <div class="hidden-content w-100">
+                        <p class="m-0">Cargue los gastos del consorcio y genere las liquidaciones de forma ágil con
+                            envío automático por email. El sistema integra todos los medios de pago e imputa las
+                            cobranzas automáticamente, minimizando errores y optimizando su tiempo administrativo.</p>
+                        <div class="mt-4 pt-3 w-100 line-separator">
+                            <a href="mailto:ambortd@hotmail.com?subject=Consulta sobre Liquidación y Cobranzas"
+                                class="d-flex justify-content-between align-items-center text-decoration-none action-link">
                                 <span>Quiero saber más</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -179,16 +183,19 @@
                 </div>
             </div>
 
-            <div class="feature-card glass card-hover-effect" onmouseenter="cambiarFondo('bg-2')">
+            <div class="feature-card glass" onmouseenter="cambiarFondo('bg-2')" onclick="toggleMobileAccordion(this)">
                 <div class="card-inner w-100 h-100 p-4">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <h5 class="m-0 transition-title w-100">Comunicación &<br>gestión administrativa</h5>
-                        <i class="bi bi-chevron-down d-lg-none fs-4 chevron-icon"></i>
+                        <h5 class="m-0 transition-title text-start w-100">Comunicación &<br>gestión</h5>
+                        <i class="bi bi-chevron-down chevron-icon d-lg-none fs-4"></i>
                     </div>
-                    <div class="hidden-content mt-4 w-100">
-                        <p class="m-0">Configure avisos y comunicaciones automáticas a consorcistas y proveedores. Gestione contactos desde una libreta de direcciones personalizada y envíe correos individuales o grupales con documentación adjunta.</p>
-                        <div class="mt-4 pt-3 w-100 line-separator" style="border-top: 1px solid rgba(255,255,255,0.3);">
-                            <a href="mailto:ambortd@hotmail.com?subject=Consulta sobre Comunicación y Gestión" class="d-flex justify-content-between align-items-center text-decoration-none action-link">
+                    <div class="hidden-content w-100">
+                        <p class="m-0">Configure avisos y comunicaciones automáticas a consorcistas y proveedores.
+                            Gestione contactos desde una libreta de direcciones personalizada y envíe correos
+                            individuales o grupales con documentación adjunta.</p>
+                        <div class="mt-4 pt-3 w-100 line-separator">
+                            <a href="mailto:ambortd@hotmail.com?subject=Consulta sobre Comunicación y Gestión"
+                                class="d-flex justify-content-between align-items-center text-decoration-none action-link">
                                 <span>Quiero saber más</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -197,16 +204,19 @@
                 </div>
             </div>
 
-            <div class="feature-card glass card-hover-effect" onmouseenter="cambiarFondo('bg-3')">
+            <div class="feature-card glass" onmouseenter="cambiarFondo('bg-3')" onclick="toggleMobileAccordion(this)">
                 <div class="card-inner w-100 h-100 p-4">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <h5 class="m-0 transition-title w-100">Estados de cuenta &<br>balances</h5>
-                        <i class="bi bi-chevron-down d-lg-none fs-4 chevron-icon"></i>
+                        <h5 class="m-0 transition-title text-start w-100">Estados de cuenta &<br>balances</h5>
+                        <i class="bi bi-chevron-down chevron-icon d-lg-none fs-4"></i>
                     </div>
-                    <div class="hidden-content mt-4 w-100">
-                        <p class="m-0">ZetaCe ofrece estados de cuenta detallados por unidad, con historial completo de movimientos, facilitando el seguimiento de saldos y deudores. También permite generar balances de caja por el período que se desee.</p>
-                        <div class="mt-4 pt-3 w-100 line-separator" style="border-top: 1px solid rgba(255,255,255,0.3);">
-                            <a href="mailto:ambortd@hotmail.com?subject=Consulta sobre Estados de Cuenta" class="d-flex justify-content-between align-items-center text-decoration-none action-link">
+                    <div class="hidden-content w-100">
+                        <p class="m-0">ZetaCe ofrece estados de cuenta detallados por unidad, con historial completo de
+                            movimientos, facilitando el seguimiento de saldos y deudores. También permite generar
+                            balances de caja por el período que se desee.</p>
+                        <div class="mt-4 pt-3 w-100 line-separator">
+                            <a href="mailto:ambortd@hotmail.com?subject=Consulta sobre Estados de Cuenta"
+                                class="d-flex justify-content-between align-items-center text-decoration-none action-link">
                                 <span>Quiero saber más</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -215,16 +225,19 @@
                 </div>
             </div>
 
-            <div class="feature-card glass card-hover-effect" onmouseenter="cambiarFondo('bg-4')">
+            <div class="feature-card glass" onmouseenter="cambiarFondo('bg-4')" onclick="toggleMobileAccordion(this)">
                 <div class="card-inner w-100 h-100 p-4">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <h5 class="m-0 transition-title w-100">Portal de consorcistas</h5>
-                        <i class="bi bi-chevron-down d-lg-none fs-4 chevron-icon"></i>
+                        <h5 class="m-0 transition-title text-start w-100">Portal de consorcistas</h5>
+                        <i class="bi bi-chevron-down chevron-icon d-lg-none fs-4"></i>
                     </div>
-                    <div class="hidden-content mt-4 w-100">
-                        <p class="m-0">Los consorcistas cuentan con acceso al sistema para consultar sus liquidaciones, estados de cuenta e información histórica, mejorando la transparencia y reduciendo consultas administrativas.</p>
-                        <div class="mt-4 pt-3 w-100 line-separator" style="border-top: 1px solid rgba(255,255,255,0.3);">
-                            <a href="mailto:ambortd@hotmail.com?subject=Consulta sobre Portal de Consorcistas" class="d-flex justify-content-between align-items-center text-decoration-none action-link">
+                    <div class="hidden-content w-100">
+                        <p class="m-0">Los consorcistas cuentan con acceso al sistema para consultar sus liquidaciones,
+                            estados de cuenta e información histórica, mejorando la transparencia y reduciendo consultas
+                            administrativas.</p>
+                        <div class="mt-4 pt-3 w-100 line-separator">
+                            <a href="mailto:ambortd@hotmail.com?subject=Consulta sobre Portal de Consorcistas"
+                                class="d-flex justify-content-between align-items-center text-decoration-none action-link">
                                 <span>Quiero saber más</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -415,11 +428,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         window.cambiarFondo = function (idCapa) {
-            document.querySelectorAll('.bg-fade-layer').forEach(layer => {
-                layer.classList.remove('active');
-            });
-            document.getElementById(idCapa).classList.add('active');
-        };
+                document.querySelectorAll('.bg-fade-layer').forEach(layer => {
+                    layer.classList.remove('active');
+                });
+                document.getElementById(idCapa).classList.add('active');
+            };
 
         document.addEventListener("DOMContentLoaded", function () {
             const observer = new IntersectionObserver((entries) => {
@@ -544,6 +557,24 @@
                 }
             }
         });
+
+        // Parallax para la sección Hero (Zoom + Parallax combinados)
+            const heroSection = document.querySelector('.hero-section');
+            let parallaxTick = false;
+
+            window.addEventListener('scroll', () => {
+                if (!parallaxTick) {
+                    window.requestAnimationFrame(() => {
+                        // Solo calculamos el parallax si estamos dentro de la sección Hero
+                        if (window.scrollY <= (heroSection.offsetHeight + 100)) {
+                            // El 0.4 controla la velocidad del parallax (menor = más sutil)
+                            heroSection.style.setProperty('--parallax-y', `${window.scrollY * 0.4}px`);
+                        }
+                        parallaxTick = false;
+                    });
+                    parallaxTick = true;
+                }
+            });
     
     
     </script>

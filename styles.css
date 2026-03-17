@@ -255,6 +255,8 @@ a {
     position: relative;
     z-index: 1;
     overflow: hidden;
+    /* Agregamos esta variable que va a leer el JavaScript */
+    --parallax-y: 0px;
 }
 
 .hero-section::before {
@@ -263,23 +265,27 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    /* Le damos 30% más de altura para tener margen al hacer scroll */
+    height: 130%;
     z-index: -1;
     background-image: url('img/foto_1_300.png');
-    background-attachment: fixed;
+    /* Eliminamos background-attachment: fixed porque choca con el transform */
     background-position: right top;
     background-size: cover;
     background-repeat: no-repeat;
     animation: heroBackgroundZoom 7s ease-out forwards;
+    will-change: transform;
+    /* Le avisa al navegador que esto se va a mover para optimizarlo */
 }
 
 @keyframes heroBackgroundZoom {
     0% {
-        transform: scale(1);
+        /* Combinamos el translate del parallax con el scale del zoom */
+        transform: translateY(var(--parallax-y)) scale(1);
     }
 
     100% {
-        transform: scale(1.25);
+        transform: translateY(var(--parallax-y)) scale(1.25);
     }
 }
 
@@ -704,8 +710,10 @@ a {
 }
 
 /* =========================================
-   6. SECCIÓN FUNCIONALIDADES (ACORDEÓN)
+   6. SECCIÓN FUNCIONALIDADES (ACORDEÓN / HOVER)
    ========================================= */
+
+/* --- ESTILOS BASE --- */
 .features-section {
     background-color: var(--zc-blue-dark);
     min-height: 110vh;
@@ -742,11 +750,6 @@ a {
     z-index: 1;
 }
 
-.features-section .container-fluid {
-    position: relative;
-    z-index: 2;
-}
-
 .accordion-container {
     align-items: center;
     justify-content: center;
@@ -755,15 +758,14 @@ a {
 }
 
 .feature-card.glass {
-    width: 250px;
-    height: 250px;
     flex: none;
     background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(25px);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
     overflow: hidden;
     border-radius: 0;
-    transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .card-inner {
@@ -772,51 +774,98 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: all 0.7s ease;
+    transition: all 0.5s ease;
 }
 
 .transition-title {
     font-size: 20px;
     font-weight: 700;
     color: #ffffff;
-    transition: all 0.7s ease;
+    transition: all 0.5s ease;
 }
 
 .hidden-content {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease;
 }
 
 .hidden-content p {
     font-size: 19px;
-    color: #ffffff;
     font-weight: 600;
+    color: #ffffff;
     text-align: left;
 }
 
 .action-link {
-    color: #ffffff;
     font-size: 19px;
     font-weight: 600;
+    color: #ffffff;
     transition: color 0.3s ease;
 }
 
-.action-link i {
-    font-size: 24px;
-}
-
-.action-link:hover {
-    color: var(--zc-cyan);
+.line-separator {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .chevron-icon {
-    color: #ffffff !important;
-    transition: transform 0.3s ease;
+    color: #ffffff;
+    transition: transform 0.4s ease;
 }
 
-@media (max-width: 992px) {
+/* --- ESCRITORIO (Estilo Original Viejo) --- */
+@media (min-width: 993px) {
+    .feature-card.glass {
+        width: 250px;
+        height: 250px;
+    }
 
+    .feature-card.glass:hover {
+        width: 400px;
+        height: 400px;
+        background-color: #ffffff !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        backdrop-filter: none;
+    }
+
+    .feature-card.glass:hover .card-inner {
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .feature-card.glass:hover .transition-title {
+        font-size: 24px;
+        color: var(--zc-blue-dark) !important;
+    }
+
+    .feature-card.glass:hover .hidden-content {
+        max-height: 500px;
+        opacity: 1;
+        margin-top: 20px;
+    }
+
+    .feature-card.glass:hover .hidden-content p {
+        color: #555555 !important;
+        font-weight: 400 !important;
+    }
+
+    .feature-card.glass:hover .action-link {
+        color: var(--zc-text-dark) !important;
+    }
+
+    .feature-card.glass:hover .action-link:hover {
+        color: var(--zc-blue-main) !important;
+    }
+
+    .feature-card.glass:hover .line-separator {
+        border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
+    }
+}
+
+/* --- MÓVILES (Estilo Nuevo Acordeón) --- */
+@media (max-width: 992px) {
     .features-section {
         min-height: 100vh;
         padding: 60px 0;
@@ -839,15 +888,9 @@ a {
         width: 100%;
         height: auto !important;
         min-height: auto !important;
-        background-color: rgba(255, 255, 255, 0.4) !important;
-        backdrop-filter: blur(25px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        cursor: pointer;
-        transition: all 0.4s ease;
     }
 
     .feature-card.glass .card-inner {
-        padding: 20px !important;
         justify-content: flex-start;
         align-items: flex-start;
         text-align: left;
@@ -855,35 +898,13 @@ a {
 
     .transition-title {
         font-size: 20pt;
-        text-align: left;
-        color: #ffffff !important;
-        font-weight: 700;
-        transition: all 0.4s ease;
     }
 
     .hidden-content p {
         font-size: 16pt;
-        color: #ffffff !important;
-        font-weight: 600;
     }
 
-    .action-link {
-        color: #ffffff !important;
-    }
-
-    .chevron-icon {
-        color: #ffffff !important;
-        transition: all 0.4s ease;
-    }
-
-    .feature-card.glass .hidden-content {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        margin-top: 0 !important;
-        transition: all 0.4s ease;
-    }
-
+    /* Estado expandido por JS en celulares */
     .feature-card.glass.is-expanded {
         background-color: #ffffff !important;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -893,7 +914,7 @@ a {
     .feature-card.glass.is-expanded .hidden-content {
         max-height: 800px;
         opacity: 1;
-        margin-top: 15px !important;
+        margin-top: 15px;
     }
 
     .feature-card.glass.is-expanded .transition-title {
@@ -916,11 +937,6 @@ a {
 
     .feature-card.glass.is-expanded .line-separator {
         border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
-    }
-
-    .feature-card.glass:hover .hidden-content:not(.feature-card.glass.is-expanded .hidden-content) {
-        max-height: 0;
-        opacity: 0;
     }
 }
 
