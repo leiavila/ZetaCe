@@ -136,7 +136,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 84px;
 }
 
 body {
@@ -217,6 +217,13 @@ a {
     height: 4px;
     background-color: var(--zc-blue-main);
     border-radius: 2px;
+}
+
+@media (max-width: 992px) {
+    .custom-link.active::after {
+        left: 0;
+        width: 65px;
+    }
 }
 
 .btn-contacto {

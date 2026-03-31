@@ -73,7 +73,7 @@
                             <div
                                 class="face card-dark d-flex align-items-center justify-content-center text-center p-4">
                                 <div>
-                                    <h5 class="hero-card-text m-0">Primeros 6 Meses<br>Bonificados</h5>
+                                    <h5 class="hero-card-text m-0">Primeros 6 Meses<br>100 % Bonificados</h5>
                                 </div>
                             </div>
                         </div>
@@ -271,7 +271,7 @@
                             <li>Aplicación 100 % web</li>
                             <li>Acceso desde cualquier lugar</li>
                             <li>Usuarios ilimitados con acceso simultáneo</li>
-                            <li>Documentos personalizados con logo</li>
+                            <li>Documentos personalizados con logo de la administración</li>
                             <li>Backups automáticos diarios</li>
                             <li>Información histórica siempre disponible</li>
                         </ul>
@@ -298,8 +298,7 @@
                             <div class="support-text ps-4">
                                 <h5 class="support-card-title">Capacitación</h5>
                                 <p style="font-size: 22px;" class="mb-0 text-muted">
-                                    Personalizada sin cargo para administradores y soporte técnico/administrativo 7x24,
-                                    en tiempo real y con atención humana.
+                                    Personalizada sin cargo para administradores.
                                 </p>
                             </div>
                         </div>
@@ -311,6 +310,7 @@
                             <div class="support-text ps-4">
                                 <h5 class="support-card-title">Soporte</h5>
                                 <p style="font-size: 22px;" class="mb-0 text-muted">
+                                    Técnico/administrativo 7x24, en tiempo real y con atención humana.
                                     Se brinda por teléfono, WhatsApp o email, incluidos fines de semana y feriados.
                                 </p>
                             </div>
@@ -343,7 +343,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="impl-card h-100 text-start">
                         <h4>Crecimiento sin restricciones</h4>
-                        <p style="font-size: 19px;">Sin límite de usuarios</p>
+                        <p style="font-size: 19px;">Sin limites de Consorcios. Sin limites de UF. Sin Limites de Usuarios</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -353,7 +353,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn-demo-solid">Solicitar demo sin cargo</a>
+            <a href="#contacto" class="btn-demo-solid">Solicitar demo sin cargo</a>
         </div>
     </section>
 
@@ -577,6 +577,37 @@
             });
     
     
+            // Cierra el menú hamburguesa en mobile y espera a que cierre para hacer scroll
+                const navLinksMenu = document.querySelectorAll('.navbar-nav .custom-link');
+                const menuToggle = document.getElementById('navbarContent');
+
+                navLinksMenu.forEach(function (link) {
+                    link.addEventListener('click', function (e) {
+                        // Chequeamos si el menú está abierto en mobile
+                        if (menuToggle.classList.contains('show')) {
+                            e.preventDefault(); // Frenamos el comportamiento por defecto del link
+                            const targetId = this.getAttribute('href');
+                            const targetSection = document.querySelector(targetId);
+
+                            // Instanciamos el collapse de Bootstrap
+                            const bsCollapse = bootstrap.Collapse.getInstance(menuToggle) || new bootstrap.Collapse(menuToggle, { toggle: false });
+
+                            // Le decimos que ESPERE a que termine la animación de cierre ('hidden.bs.collapse')
+                            menuToggle.addEventListener('hidden.bs.collapse', function onHidden() {
+                                // Removemos el evento para que no se dispare múltiples veces a futuro
+                                menuToggle.removeEventListener('hidden.bs.collapse', onHidden);
+
+                                // Ahora sí, hacemos el scroll suave hacia la sección
+                                if (targetSection) {
+                                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            });
+
+                            // Damos la orden de ocultar el menú
+                            bsCollapse.hide();
+                        }
+                    });
+                });
     </script>
 </body>
 
