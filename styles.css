@@ -821,58 +821,12 @@ a {
     transition: transform 0.4s ease;
 }
 
-
-
 @media (min-width: 1920px) {
     .feature-card.glass {
         width: 300px;
-        height: 300px;
-    }
-
-    .feature-card.glass:hover {
-        width: 400px;
-        height: 400px;
-        background-color: #ffffff !important;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        backdrop-filter: none;
-    }
-
-    .feature-card.glass:hover .card-inner {
-        justify-content: flex-start;
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    .feature-card.glass:hover .transition-title {
-        font-size: 24px;
-        color: var(--zc-blue-dark) !important;
-    }
-
-    .feature-card.glass:hover .hidden-content {
-        max-height: 500px;
-        opacity: 1;
-        margin-top: 20px;
-    }
-
-    .feature-card.glass:hover .hidden-content p {
-        color: #555555 !important;
-        font-weight: 400 !important;
-    }
-
-    .feature-card.glass:hover .action-link {
-        color: var(--zc-text-dark) !important;
-    }
-
-    .feature-card.glass:hover .action-link:hover {
-        color: var(--zc-blue-main) !important;
-    }
-
-    .feature-card.glass:hover .line-separator {
-        border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
+            height: 300px;
     }
 }
-
-
 
 /* --- ESCRITORIO (Estilo Original Viejo) --- */
 @media (min-width: 993px) {
@@ -921,6 +875,45 @@ a {
 
     .feature-card.glass:hover .line-separator {
         border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
+    }
+}
+
+/* --- Estilo para Laptops y Desktops normales (993px en adelante) --- */
+@media (min-width: 993px) {
+    .feature-card.glass {
+        width: 250px;
+        height: 250px;
+        transition: all 0.3s ease;
+        /* Para que el cambio de tamaño sea suave */
+    }
+
+    /* Tu lógica de Hover original se mantiene aquí */
+    .feature-card.glass:hover {
+        width: 400px;
+        height: 400px;
+        background-color: #ffffff !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        backdrop-filter: none;
+    }
+
+    /* ... (aquí iría el resto de tus estilos :hover que ya pasaste) ... */
+}
+
+/* --- Estilo para Pantallas Grandes (22 pulgadas / 1920px en adelante) --- */
+@media (min-width: 1920px) {
+    .feature-card.glass {
+        /* Ahora miden 400px por defecto sin pasar el mouse */
+        width: 400px;
+        height: 400px;
+    }
+
+    /* Opcional: Si quieres que al hacer hover crezcan aún más en 22", 
+       puedes cambiarlo aquí. Si quieres que se queden en 400px, 
+       puedes dejar el hover igual. */
+    .feature-card.glass:hover {
+        width: 450px;
+        /* Ejemplo de crecimiento extra en pantallas gigantes */
+        height: 450px;
     }
 }
 
