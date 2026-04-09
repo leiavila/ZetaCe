@@ -821,12 +821,58 @@ a {
     transition: transform 0.4s ease;
 }
 
+
+
 @media (min-width: 1920px) {
     .feature-card.glass {
         width: 300px;
-            height: 300px;
+        height: 300px;
+    }
+
+    .feature-card.glass:hover {
+        width: 400px;
+        height: 400px;
+        background-color: #ffffff !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        backdrop-filter: none;
+    }
+
+    .feature-card.glass:hover .card-inner {
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .feature-card.glass:hover .transition-title {
+        font-size: 24px;
+        color: var(--zc-blue-dark) !important;
+    }
+
+    .feature-card.glass:hover .hidden-content {
+        max-height: 500px;
+        opacity: 1;
+        margin-top: 20px;
+    }
+
+    .feature-card.glass:hover .hidden-content p {
+        color: #555555 !important;
+        font-weight: 400 !important;
+    }
+
+    .feature-card.glass:hover .action-link {
+        color: var(--zc-text-dark) !important;
+    }
+
+    .feature-card.glass:hover .action-link:hover {
+        color: var(--zc-blue-main) !important;
+    }
+
+    .feature-card.glass:hover .line-separator {
+        border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
     }
 }
+
+
 
 /* --- ESCRITORIO (Estilo Original Viejo) --- */
 @media (min-width: 993px) {
@@ -969,7 +1015,7 @@ a {
 @media (min-width: 1920px) {
     .general-features {
         min-height: auto;
-        max-height: 900px;
+        max-height: 1100px;
     }
 }
 
