@@ -1260,6 +1260,29 @@ a {
 /* --- Ajustes para Support Section en 1920px (25% más grande) --- */
 @media (min-width: 1920px) {
 
+    .title-box {
+            background-color: #005c99;
+            padding: 15px 30px;
+            display: inline-block;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+                .support-card {
+                    width: 100%;
+                    max-width: 900px;
+                    border-radius: 0;
+                    position: relative;
+                    z-index: 2;
+                    opacity: 0;
+                    transform: translateY(-60px);
+                    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+                }
+
+
     #support-section {
         padding: 125px 0 !important;
         /* Aumentado de 100px a 125px */
