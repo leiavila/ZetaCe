@@ -903,17 +903,13 @@ a {
 @media (min-width: 1920px) {
     .feature-card.glass {
         /* Ahora miden 400px por defecto sin pasar el mouse */
-        width: 400px;
-        height: 400px;
+        width: 325px;
+        height: 325px;
     }
 
-    /* Opcional: Si quieres que al hacer hover crezcan aún más en 22", 
-       puedes cambiarlo aquí. Si quieres que se queden en 400px, 
-       puedes dejar el hover igual. */
     .feature-card.glass:hover {
-        width: 450px;
-        /* Ejemplo de crecimiento extra en pantallas gigantes */
-        height: 450px;
+        width: 375px;
+        height: 375px;
     }
 }
 
@@ -1192,7 +1188,7 @@ a {
     padding: 15px 30px;
     display: inline-block;
     width: 100%;
-    max-width: 800px;
+    max-width: 750px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 10;
@@ -1259,6 +1255,58 @@ a {
 .support-text p {
     font-size: 0.95rem;
     line-height: 1.6;
+}
+
+/* --- Ajustes para Support Section en 1920px (25% más grande) --- */
+@media (min-width: 1920px) {
+
+    #support-section {
+        padding: 125px 0 !important;
+        /* Aumentado de 100px a 125px */
+    }
+
+    /* Aumentar el título (h2) */
+    #support-section h2 {
+        font-size: 3.125rem !important;
+        /* 2.5rem * 1.25 */
+        margin-bottom: 2rem !important;
+    }
+
+    /* Aumentar el párrafo descriptivo */
+    #support-section p.lead {
+        font-size: 1.56rem !important;
+        /* 1.25rem * 1.25 */
+        line-height: 1.8 !important;
+    }
+
+    /* Aumentar la lista de ítems (puntos clave) */
+    #support-section .mb-3.d-flex {
+        margin-bottom: 1.5rem !important;
+    }
+
+    #support-section .mb-3.d-flex i {
+        font-size: 1.56rem !important;
+        /* Iconos más grandes */
+        margin-right: 1.25rem !important;
+    }
+
+    #support-section .mb-3.d-flex span {
+        font-size: 1.4rem !important;
+    }
+
+    /* Aumentar la imagen de la derecha */
+    #support-section .img-fluid.rounded-4 {
+        transform: scale(1.15);
+        /* Agrandamos la imagen un poco más */
+        transform-origin: center;
+        margin-left: 20px;
+    }
+
+    /* Si tienes un botón en esa sección */
+    #support-section .btn {
+        padding: 15px 35px !important;
+        font-size: 1.25rem !important;
+    }
 }
 
 @media (max-width: 768px) {
